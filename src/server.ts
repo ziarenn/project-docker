@@ -72,7 +72,6 @@ app.get("/", async (_req: Request, res: Response) => {
       htmlPage(
         "IoT App - DB connected",
         `<h1>IoT Application <span class="badge ok">DB CONNECTED</span></h1>
-        <h2>*This is a CICD test*</h2>
          <p>Successfully connected to Azure SQL Database and executed <code>SELECT @@VERSION</code>:</p>
          <pre>${version}</pre>`,
       ),
