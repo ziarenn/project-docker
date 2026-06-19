@@ -1,0 +1,13 @@
+node_modules
+dist
+npm-debug.log
+.git
+.gitignore
+*.tf
+*.tfstate
+*.tfstate.*
+.terraform
+.terraform.lock.hcl
+Dockerfile
+.dockerignore
+README.md
