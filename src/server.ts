@@ -49,7 +49,7 @@ function htmlPage(title: string, bodyHtml: string): string {
 app.get("/", async (_req: Request, res: Response) => {
   // Fail fast with a clear message if the environment is misconfigured.
   const missing = ["DB_SERVER", "DB_NAME", "DB_USER", "DB_PASSWORD"].filter(
-    (k) => !process.env[k]
+    (k) => !process.env[k],
   );
   if (missing.length > 0) {
     return res.status(500).send(
@@ -57,8 +57,8 @@ app.get("/", async (_req: Request, res: Response) => {
         "Configuration error",
         `<h1><span class="badge err">CONFIG ERROR</span></h1>
          <p>Missing required environment variables:</p>
-         <pre>${missing.join("\n")}</pre>`
-      )
+         <pre>${missing.join("\n")}</pre>`,
+      ),
     );
   }
 
@@ -72,9 +72,10 @@ app.get("/", async (_req: Request, res: Response) => {
       htmlPage(
         "IoT App - DB connected",
         `<h1>IoT Application <span class="badge ok">DB CONNECTED</span></h1>
+        <h2>*This is a CICD test*</h2>
          <p>Successfully connected to Azure SQL Database and executed <code>SELECT @@VERSION</code>:</p>
-         <pre>${version}</pre>`
-      )
+         <pre>${version}</pre>`,
+      ),
     );
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
@@ -83,8 +84,8 @@ app.get("/", async (_req: Request, res: Response) => {
         "IoT App - DB error",
         `<h1>IoT Application <span class="badge err">DB ERROR</span></h1>
          <p>Failed to connect to or query the database:</p>
-         <pre>${message}</pre>`
-      )
+         <pre>${message}</pre>`,
+      ),
     );
   } finally {
     if (pool) {
